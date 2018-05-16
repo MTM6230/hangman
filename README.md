@@ -22,4 +22,4 @@ The `guess()` command is the the main action the player will use throughout the 
 
 ### Help
 
-The help action will give player a set of instructions on how to play the game. The instructions should be display when the page is loaded.
+The `help()` command will display a set of instructions on how to play the game.
