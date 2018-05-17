@@ -16,34 +16,54 @@
  */
 
 /**
- * Create and display a list of instructions to explain how to play the game
- * and which commands can be used.
+ * Create and display a list of instructions to explain how to play the game and which commands can be used.
  */
 
 /**
  * Create a start command to start a new game
- * - Set the active game indicator to true
- * - Select a current phrase
- * - Reset the number of strikes
- * - Reset the list of guessed letters
- * - Convert phrase to a puzzle
- * - Display the puzzle with the current category
+ * - Check if there is a current game
+ *    - If no:
+ *      - Set game to active
+ *      - Select a current phrase
+ *      - Reset the number of strikes
+ *      - Reset the list of guessed letters
+ *      - Convert phrase to a puzzle
+ *      - Display the puzzle with the current category
+ *    - If yes:
+ *      - Convert current phrase to a puzzle
+ *      - Display the puzzle
  */
 
 /**
- * Convert phrase to a puzzle
- * -
+ * Convert phrase to puzzle
+ * - convert each letter to underscore
+ *    - Convert all letters to uppercase
+ *    - But leave spaces as spaces
+ *    - Use list of guessed letters to determine which letters not to convert
+ * - Check if puzzle is complete (no underscores)
+ *    - Display game won message
  */
 
 /**
- * Create a guess command to guess a letter
- * - Check if guessed letter is a valid letter
- * - Check if guessed letter has not already been guessed
- * - Add guessed letter to list of guessed letters
- * - Check if guessed letter is in the phrase
- *    - if yes, display a message that the guess was successful
- *    - if no, update number of strikes
- *      display message tell the player how many strikes are remaining
- * - Convert the phrase to a puzzle with any any correctly guessed letters
- * - Display the puzzle
+ * Create guess command
+ * - Check if guessed letter is valid and display message
+ * - Check if guessed letter has already guessed and display message
+ * - Check if guessed letter is in puzzle
+ *  - If yes
+ *    - display message
+ *    - check if won
+ *      - if yes, display message, display completed puzzle and end game
+ *      - if no, update and display puzzle
+ *  - If no
+ *    - display message
+ *    - update strikes
+ *    - check if lost
+ *       - if yes, display message and end game
+ *          - Don't display full puzzle
+ *       - if no, display puzzle
+ */
+
+/**
+ * Create help command
+ * - Display instructions
  */
