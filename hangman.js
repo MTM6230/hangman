@@ -5,6 +5,33 @@
 /**
  * Create a list of phrases. Each phrase should have a related category.
  */
+const phrases = [
+  { phrase: 'The Three Little Pigs', category: 'Title' },
+  { phrase: 'Little Red Riding Hood', category: 'Title' },
+  { phrase: 'The Princess and the Pea', category: 'Title' },
+  { phrase: 'Beauty and the Beast', category: 'Title' },
+  { phrase: 'Jack and the Beanstalk', category: 'Title' },
+  { phrase: 'Snow White and the Seven Dwarfs', category: 'Title' },
+  { phrase: 'Alice in Wonderland', category: 'Title' },
+  { phrase: 'Wizard of Oz', category: 'Title' },
+  { phrase: 'Goldilocks and the Three Bears', category: 'Title' },
+  { phrase: 'Hansel and Gretel', category: 'Title' },
+  { phrase: 'Maleficent', category: 'Character' },
+  { phrase: 'Cruella De Vil', category: 'Character' },
+  { phrase: 'Ursula', category: 'Character' },
+  { phrase: 'Wicked Witch of the West', category: 'Character' },
+  { phrase: 'Queen of Hearts', category: 'Character' },
+  { phrase: 'The Big Bad Wolf', category: 'Character' },
+  { phrase: 'Captain Hook', category: 'Character' },
+  { phrase: 'Rumpelstiltskin', category: 'Character' },
+  { phrase: 'Peter Pan', category: 'Character' },
+  { phrase: 'Robin Hood', category: 'Character' },
+  { phrase: 'Mulan', category: 'Character' },
+  { phrase: 'Hercules', category: 'Character' },
+  { phrase: 'Moana', category: 'Character' },
+  { phrase: 'Cinderella', category: 'Character' },
+  { phrase: 'Tinkerbell', category: 'Character' }
+]
 
 /**
  * Create a container to hold the current game status
@@ -14,6 +41,13 @@
  * - The number of strikes
  * - The maximum number of allowed strikes
  */
+const game = {
+  active: false,
+  numberOfStrikes: 5,
+  maxNumberOfStrikes: 5,
+  currentPuzzle: null,
+  guessedLetters: []
+}
 
 /**
  * Create and display a list of instructions to explain how to play the game and which commands can be used.
