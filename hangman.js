@@ -50,8 +50,17 @@ const game = {
 }
 
 /**
- * Create and display a list of instructions to explain how to play the game and which commands can be used.
+ * Create help command
+ * - Display instructions
  */
+function help () {
+  return `HANGMAN\nTry to solve the puzzle by guessing letters using guess(letter). If you miss a letter you get a strike. Get ${game.maxStrikes} stikes and you lose the game.\n\nTo start a new game type start().`
+}
+/**
+ * Create and display a list of instructions to explain how
+ * to play the game and which commands can be used.
+ */
+console.log(help())
 
 /**
  * Create a start command to start a new game
@@ -67,6 +76,23 @@ const game = {
  *      - Convert current phrase to a puzzle
  *      - Display the puzzle
  */
+function start () {
+  // Check if there is a current game
+  if (game.active) {
+    console.log(`A game has already been started.`)
+  } else {
+    // Set game status to active
+    game.active = true
+    // Randomly select a puzzle, only the index will be stored.
+    game.currentPuzzle = Math.floor(Math.random() * phrases.length)
+    // Set number of strikes to max number of strikes
+    game.numberOfStrikes = game.maxNumberOfStrikes
+    // Reset the guessed letters array
+    game.guessedLetters = ['R', 'S', 'T', 'L', 'N', 'E']
+  }
+
+  return buildPuzzle()
+}
 
 /**
  * Convert phrase to puzzle
@@ -77,6 +103,37 @@ const game = {
  * - Check if puzzle is complete (no underscores)
  *    - Display game won message
  */
+function buildPuzzle () {
+  // Convert all the phrases letters to uppercase
+  const phrase = phrases[game.currentPuzzle].phrase.toUpperCase()
+
+  // Retrieve the Category
+  const category = phrases[game.currentPuzzle].category
+
+  // Create an array to hold the puzzle
+  const puzzle = []
+
+  /**
+   * Loop over the phrase converting all letters that have not
+   * been guessed or are not spaces to underscores
+   */
+  for (let i = 0; i < phrase.length; i++) {
+    /**
+     * Check for spaces and guessed letters
+     * if yes, add character to the puzzle
+     * if no, add an underscore
+     */
+    if (phrase[i] === ' ' || game.guessedLetters.indexOf(phrase[i]) !== -1) {
+      puzzle.push(phrase[i])
+    } else {
+      puzzle.push('_')
+    }
+  }
+
+  // Display category and puzzle
+  return `The catogory is ${category}.
+  ${puzzle.join(' ')}`
+}
 
 /**
  * Create guess command
@@ -95,9 +152,4 @@ const game = {
  *       - if yes, display message and end game
  *          - Don't display full puzzle
  *       - if no, display puzzle
- */
-
-/**
- * Create help command
- * - Display instructions
  */
