@@ -88,7 +88,7 @@ function start () {
     // Set number of strikes to max number of strikes
     game.numberOfStrikes = game.maxNumberOfStrikes
     // Reset the guessed letters array
-    game.guessedLetters = ['R', 'S', 'T', 'L', 'N', 'E']
+    game.guessedLetters = []
   }
 
   return buildPuzzle()
