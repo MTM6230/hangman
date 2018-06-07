@@ -46,7 +46,8 @@ const game = {
   numberOfStrikes: 5,
   maxNumberOfStrikes: 5,
   currentPuzzle: null,
-  guessedLetters: []
+  guessedLetters: [],
+  letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 }
 
 /**
@@ -153,46 +154,3 @@ function buildPuzzle () {
  *          - Don't display full puzzle
  *       - if no, display puzzle
  */
-function guess (letter) {
-  // Check if there is an active game.
-  if (game.active) {
-    // Convert the letter to uppercase
-    letter = letter.toUpperCase()
-    // Check if letter is a string and a letter
-    if (typeof letter === 'string' && letter.match(/[A-Z]/)) {
-      // Add letter to guessed letters
-      game.guessedLetters.push(letter)
-      // Check if letter is in the puzzle
-      if (phrases[game.currentPuzzle].phrase.toUpperCase().includes(letter)) {
-        // Build the puzzle
-        const puzzle = buildPuzzle()
-
-        // Check if the puzzle has been completed
-        if (puzzle.includes('_')) {
-          return `Yes, there are ${letter}s in the puzzle.\n ${puzzle}`
-        } else {
-          // Game Over
-          game.active = false
-          return `Yes, there are ${letter}s in the puzzle.\n ${puzzle}\n You solved the puzzle!\n\n Type start() to play again.`
-        }
-      } else {
-        game.numberOfStrikes--
-
-        // Check if there are any strikes left.
-        if (game.numberOfStrikes) {
-          // Build the puzzle
-          const puzzle = buildPuzzle()
-          return `Sorry, there are no ${letter}s in the puzzle.\n ${puzzle}`
-        } else {
-          // Game Over
-          game.active = false
-          return `You have no more strikes left. Game Over.\n\n Type start() to play again.`
-        }
-      }
-    } else {
-      return `You have a provide an invalid guess. Please try again.`
-    }
-  } else {
-    return `You cannot make a guess because there is no active game.\n\nTo start a new game type start().`
-  }
-}
